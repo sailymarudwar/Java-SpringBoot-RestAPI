@@ -41,7 +41,7 @@ public class Application {
 	public ResponseEntity<ArrayList<Employee>> getAllemployees(@RequestParam(name = "SID",required = false) String sid,
 			@RequestParam(name = "pos",required = false) String pos) {
 
-		String sql = "SELECT * FROM EMPLOYEES";
+		String sql = "SELECT * FROM EMPLOYEES ";
 		String appendStr = "";
 		if (sid != null) {
 			appendStr = " WHERE SID=" + sid.trim();

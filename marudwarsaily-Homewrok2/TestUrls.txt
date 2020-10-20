@@ -1,0 +1,76 @@
+I have used RequestParam for the Part 1.1 where we have to find Employees by SID and Position
+
+to get this mapping, you have to pass ?sid=xxxxx&pos=x-x
+
+Following are the four sample URLs for the four parts of 1.1, you can replace the SIDs and Positions to test these:
+
+http://localhost:8081/employeesbySidAndPos?sid=91254&pos=E-2
+http://localhost:8081/employeesbySidAndPos?sid=91254
+http://localhost:8081/employeesbySidAndPos?pos=E-2
+http://localhost:8081/employeesbySidAndPos
+
+GET /numemployeesBySupervisor/{sid}		
+		http://localhost:8081/numemployeesBySupervisor/91254
+		
+		Negative Case:
+		http://localhost:8081/numemployeesBySupervisor/851833e
+		
+GET /employeesOver20YOS       
+		http://localhost:8081/employeesOver20YOS
+
+GET /employeesByDepartment/{department} 
+        http://localhost:8081/employeesByDepartment/Space Force
+
+GET /employeesbySidAndPos
+		http://localhost:8081/employeesbySidAndPos?sid=91254&pos=E-2
+		http://localhost:8081/employeesbySidAndPos?sid=91254
+		http://localhost:8081/employeesbySidAndPos?pos=E-2
+		http://localhost:8081/employeesbySidAndPos
+		
+		Negative Cases:
+		
+		http://localhost:8081/employeesbySidAndPos?sid=851844&pos=E-23
+		http://localhost:8081/employeesbySidAndPos?sid=912543
+		http://localhost:8081/employeesbySidAndPos?pos=E-23
+
+GET /employeeByEid/{eid} 
+		http://localhost:8081/employeeByEid/81083
+		
+		Negative Case:
+		http://localhost:8081/employeeByEid/810833
+
+DELETE /deleteEmployee/{eid} 
+	http://localhost:8081/deleteEmployee/28178
+	
+	Negative Case:
+	http://localhost:8081/deleteEmployee/2817833
+
+GET /employeeSalarySummary
+	http://localhost:8081/employeeSalarySummary
+
+
+GET /supervisorsBySid
+	http://localhost:8081/supervisorsBySid/91254
+	
+	Negative Case:
+	http://localhost:8081/supervisorsBySid/9125423
+ 
+Delete /deleteSupervisor
+ http://localhost:8081/deleteSupervisor/91254
+ 
+ Negative Case:
+http://localhost:8081/deleteSupervisor/912543
+
+
+PUT /updateEmployee
+http://localhost:8081//updateEmployee
+
+
+POST /createEmployee
+http://localhost:8081/createEmployee
+
+PUT /updateSupervisor
+http://localhost:8081/updateSupervisor
+
+POST /createSupervisor
+http://localhost:8081/createSupervisor

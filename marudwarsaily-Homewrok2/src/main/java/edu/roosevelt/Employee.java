@@ -8,6 +8,10 @@ package edu.roosevelt;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author smarudwar
@@ -21,8 +25,10 @@ FOREIGN KEY (SID) ";
 REFERENCES SUPERVISORS (SID))"
 
  */
+@Entity
+@Table(name = "EMPLOYEE")
 public class Employee implements Serializable{
-    
+	@Id
     private int EID;
     private String name;
     private String position;

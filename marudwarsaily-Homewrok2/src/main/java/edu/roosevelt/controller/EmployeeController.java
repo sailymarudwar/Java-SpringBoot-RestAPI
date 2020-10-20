@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-
 import edu.roosevelt.Employee;
 import edu.roosevelt.EmployeeRowMapper;
 
@@ -224,8 +218,8 @@ public class EmployeeController {
 	public List<Map<String, Object>> getSalarySummary() {
 		try {
 
-			return db.queryForList("SELECT DEPARTMENT as Department_Name,SUM(SALARY) AS Salary_Sum," + "COUNT(SALARY) AS Salary_Count, "
-					+ "AVG(SALARY) AS Salary_Average\n" + "FROM EMPLOYEES E JOIN SUPERVISORS S\n" + "ON (E.SID=S.SID)\n" + "GROUP BY S.DEPARTMENT");
+			return db.queryForList("SELECT DEPARTMENT AS DEPARTMENT_NAME,SUM(SALARY) AS SALARY_SUM," + "COUNT(SALARY) AS SALARY_COUNT, "
+					+ "AVG(SALARY) AS SALARY_AVERAGE \n" + "FROM EMPLOYEES E JOIN SUPERVISORS S\n" + "ON (E.SID=S.SID)\n" + "GROUP BY S.DEPARTMENT");
 
 		} catch (Exception e) {
 			throw e;

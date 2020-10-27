@@ -45,7 +45,7 @@ I have just summarized all the URLs for you below:
 		http://localhost:8080/employeesOver20YOS
 		
 
-1.6 GET /supervisorsBySid
+1.6 GET /supervisorsBySid swdec
 	http://localhost:8080/supervisorsBySid/91254
 	
 	Negative Case:

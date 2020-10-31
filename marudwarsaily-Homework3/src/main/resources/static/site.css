@@ -1,5 +1,3 @@
-
-
 h1 {
     color: aquamarine;
     background-color: purple;
@@ -32,6 +30,28 @@ a:hover {
 #employees tr:hover {background-color: #ddd;}
 
 #employees th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+#supervisors {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#supervisors td, #supervisors th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#supervisors tr:nth-child(even){background-color: #f2f2f2;}
+
+#supervisors tr:hover {background-color: #ddd;}
+
+#supervisors th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

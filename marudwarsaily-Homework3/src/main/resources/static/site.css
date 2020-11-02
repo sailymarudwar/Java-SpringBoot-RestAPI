@@ -1,10 +1,10 @@
 body {
-  background-color: white;
+  background-color: papayawhip;
 }
 
 h1 {
-    color: black;
-    background-color: salmon;
+    color: white;
+    background-color: black;
 }
 
 a:link, a:visited, a:active {
@@ -40,7 +40,7 @@ a:hover {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: crimson;
+  background-color: orange;
   color: white;
 }
 #supervisors {
@@ -54,6 +54,7 @@ a:hover {
 }
 
 #supervisors tr:nth-child(even){background-color: #f2f2f2;}
+#supervisors tr th a {color: black; }
 
 #supervisors tr:hover {background-color: #ddd;}
 
@@ -61,7 +62,7 @@ a:hover {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: orange;
   color: white;
 }
 

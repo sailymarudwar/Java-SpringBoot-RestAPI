@@ -10,6 +10,8 @@ import java.util.Objects;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
@@ -17,28 +19,28 @@ import com.sun.istack.NotNull;
 /**
  *
  * @author smarudwar
- * EID INTEGER PRIMARY KEY,";
-NAME VARCHAR(30),";
-POSITION VARCHAR(30),";
-YOS INTEGER,";
-SALARY DOUBLE,";
-SID INTEGER,";
-FOREIGN KEY (SID) ";
-REFERENCES SUPERVISORS (SID))"
-
  */
 public class Employee implements Serializable{
 	
 	@NotNull
-	@Min(value=10000, message="Employee Must be 5 digit")  
-    @Max(value=99999, message="Employee Must be 5 digit")  
+	@Min(value=10000, message="Employee ID Must be 5 digit")  
+    @Max(value=99999, message="Employee ID Must be 5 digit")  
     private int EID;
 	@NotNull
-	@Size(min=2, max=30)
+	@NotBlank
+	@Size(max=30)
     private String name;
+	@NotNull
+	@NotBlank
+	@Size(max=30)
     private String position;
+	@Positive
     private int YOS;  
+	@Positive
     private double salary;
+	@NotNull
+	@Min(value=10000, message="SID Must be 5 digit")  
+	@Max(value=99999, message="SID Must be 5 digit")  
     private int SID;
 
 	public int getEID() {

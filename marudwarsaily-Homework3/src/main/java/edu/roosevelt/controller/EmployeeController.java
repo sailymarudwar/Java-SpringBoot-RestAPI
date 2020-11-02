@@ -153,7 +153,7 @@ public class EmployeeController implements WebMvcConfigurer {
 
 	//2.1 Add an employee
 	@PostMapping(value = "/createEmployee", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Employee> createEmployee(@Valid @RequestBody final Employee s,BindingResult bindingResult) {
+	public ResponseEntity<Employee> createEmployee(@RequestBody @Valid final Employee s) {
 		try {
 			
 			String sql = "SELECT COUNT(*) FROM EMPLOYEES WHERE EID=" + s.getEID();
@@ -172,10 +172,12 @@ public class EmployeeController implements WebMvcConfigurer {
 			return new ResponseEntity("Error in creatung Employee\n" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	
 
 	//3.1 Update an employee
 	@PutMapping(value = "/updateEmployee", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Employee> updateEmployee(@RequestBody final Employee s) {
+	public ResponseEntity<Employee> updateEmployee(@RequestBody @Valid final Employee s) {
 
 		try {
 

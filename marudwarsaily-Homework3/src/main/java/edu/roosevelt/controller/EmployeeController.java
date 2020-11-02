@@ -232,15 +232,6 @@ public class EmployeeController implements WebMvcConfigurer {
 		}
 	}
 	
-	@PostMapping("/checkPersonInfo")
-	public String checkPersonInfo(@Valid EmployeeForm personForm, BindingResult bindingResult) {
-
-		if (bindingResult.hasErrors()) {
-			return "form";
-		}
-
-		return "redirect:/results";
-	}
 	@RequestMapping("/endpoints")
 	public @ResponseBody
 	Object showEndpointsAction() throws SQLException

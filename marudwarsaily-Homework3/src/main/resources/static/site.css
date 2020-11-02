@@ -1,6 +1,10 @@
+body {
+  background-color: white;
+}
+
 h1 {
-    color: aquamarine;
-    background-color: purple;
+    color: black;
+    background-color: salmon;
 }
 
 a:link, a:visited, a:active {
@@ -27,16 +31,18 @@ a:hover {
 
 #employees tr:nth-child(even){background-color: #f2f2f2;}
 
+#employees tr th a {color: black; }
+
+
 #employees tr:hover {background-color: #ddd;}
 
 #employees th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4CAF50;
+  background-color: crimson;
   color: white;
 }
-
 #supervisors {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;

@@ -8,9 +8,8 @@ package edu.roosevelt;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
@@ -28,12 +27,11 @@ FOREIGN KEY (SID) ";
 REFERENCES SUPERVISORS (SID))"
 
  */
-@Entity
-@Table(name = "EMPLOYEE")
 public class Employee implements Serializable{
-	@Id
+	
 	@NotNull
-	@Size(min=2, max=5)
+	@Min(value=10000, message="Employee Must be 5 digit")  
+    @Max(value=99999, message="Employee Must be 5 digit")  
     private int EID;
 	@NotNull
 	@Size(min=2, max=30)

@@ -1,0 +1,84 @@
+I have used RequestParam for the Part 1.1 where we have to find Employees either by SID or Position
+
+To pass this get request, you have to pass ?sid=xxxxx&pos=x-x after the http://localhost:8080/employeesbySidAndPos
+
+Following are the four sample URLs for the four parts of 1.1, you can replace the SIDs and Positions to test these:
+
+http://localhost:8080/employeesbySidAndPos?sid=91254&pos=E-2
+http://localhost:8080/employeesbySidAndPos?sid=91254
+http://localhost:8080/employeesbySidAndPos?pos=E-2
+http://localhost:8080/employeesbySidAndPos
+
+
+The code is written in the controller class for Employee and Supervisor.
+I have just summarized all the URLs for you below:
+
+1.1 GET /employeesbySidAndPos
+		http://localhost:8080/employeesbySidAndPos?sid=91254&pos=E-2
+		http://localhost:8080/employeesbySidAndPos?sid=91254
+		http://localhost:8080/employeesbySidAndPos?pos=E-2
+		http://localhost:8080/employeesbySidAndPos
+		
+		Negative Cases:
+		
+		http://localhost:8080/employeesbySidAndPos?sid=851844&pos=E-23
+		http://localhost:8080/employeesbySidAndPos?sid=912543
+		http://localhost:8080/employeesbySidAndPos?pos=E-23
+		
+1.2 GET /employeeByEid/{eid} 
+		http://localhost:8080/employeeByEid/81083
+		
+		Negative Case:
+		http://localhost:8080/employeeByEid/810833
+		
+1.3 GET /employeesByDepartment/{department} 
+        http://localhost:8080/employeesByDepartment/Space Force
+		
+		
+1.4 GET /numemployeesBySupervisor/{sid}		
+		http://localhost:8080/numemployeesBySupervisor/91254
+		
+		Negative Case:
+		http://localhost:8080/numemployeesBySupervisor/851833e
+		
+1.5 GET /employeesOver20YOS       
+		http://localhost:8080/employeesOver20YOS
+		
+
+1.6 GET /supervisorsBySid
+	http://localhost:8080/supervisorsBySid/91254
+	
+	Negative Case:
+	http://localhost:8080/supervisorsBySid/9125423
+
+
+2.1 POST /createEmployee
+	http://localhost:8080/createEmployee
+	
+3.1 PUT /updateEmployee
+	http://localhost:8080//updateEmployee
+
+
+4.1 DELETE /deleteEmployee/{eid} 
+	http://localhost:8080/deleteEmployee/28178
+	
+	Negative Case:
+	http://localhost:8080/deleteEmployee/2817833
+
+Graduate 1: GET /employeeSalarySummary
+			http://localhost:8080/employeeSalarySummary
+
+
+
+Graduate 2: POST /createSupervisor
+			http://localhost:8080/createSupervisor
+
+			Delete /deleteSupervisor
+			http://localhost:8080/deleteSupervisor/91254
+ 
+			Negative Case:
+			http://localhost:8080/deleteSupervisor/912543
+
+			PUT /updateSupervisor
+			http://localhost:8080/updateSupervisor
+

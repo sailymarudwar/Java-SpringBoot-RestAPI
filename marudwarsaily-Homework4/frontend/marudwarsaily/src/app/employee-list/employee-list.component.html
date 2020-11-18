@@ -1,0 +1,29 @@
+<h2> Employee List</h2>
+<table class = "table table-striped"  matSort (matSortChange)="sortData($event)">
+    <thead>
+        <tr>
+			<th  mat-sort-header="eid">Employee Id</th>
+			<th  mat-sort-header="name"> Name</th>
+			<th mat-sort-header="yos"> Years of Service</th>
+			<th mat-sort-header="position"> Position </th>
+			<th mat-sort-header="salary"> Salary</th>
+			<th mat-sort-header="sid"> Supervisor Id </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let employee of sortedData" >
+
+            <td>  <span (click) = "employeeDetails(employee.eid)" style="margin-left: 10px;    cursor: pointer;text-decoration: underline;color: blue;">{{ employee.eid }} </span></td>
+            <td> {{ employee.name }} </td>
+			<td >{{ employee.yos }} </td>
+			<td> {{ employee.position }} </td>
+			<td >{{ employee.salary }} </td>
+			<td> {{ employee.sid }} </td>
+            <td>
+                <button (click) = "updateEmployee(employee.eid)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteEmployee(employee.eid)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

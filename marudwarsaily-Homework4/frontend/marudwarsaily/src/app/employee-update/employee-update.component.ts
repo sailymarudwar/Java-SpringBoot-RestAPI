@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
+import { SupervisorService } from '../supervisor.service';
 import { Employee } from '../employee';
+import { Supervisor } from '../supervisor';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,11 +12,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EmployeeUpdateComponent implements OnInit {
    eid: number;
+  supervisors: Supervisor[];
    employee: Employee = new Employee();
 
-  constructor(private employeeService: EmployeeService,
+  constructor(private employeeService: EmployeeService,private supervisorService: SupervisorService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {
+            this.getSupervisors();
+     }
 
   ngOnInit(): void {
     this.eid = this.route.snapshot.params['id'];
@@ -28,6 +33,11 @@ export class EmployeeUpdateComponent implements OnInit {
       this.goToEmployeeList();
     }
     , error => console.log(error));
+  }
+  private getSupervisors() {
+    this.supervisorService.getSupervisorsList().subscribe(data => {
+      this.supervisors = data;      
+    });
   }
   goToEmployeeList(){
     this.router.navigate(['/employees']);

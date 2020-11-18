@@ -11,12 +11,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { EmployeeUpdateComponent } from './employee-update/employee-update.component';
-import { SupervisorListComponent } from './supervisor-list/supervisor-list.component';
-import { SupervisorAddComponent } from './supervisor-add/supervisor-add.component';
-import { SupervisorClientComponent } from './supervisor-client/supervisor-client.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeedetailsComponent } from './employeedetails/employeedetails.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { SupervisorAddComponent } from './supervisor-add/supervisor-add.component';
+import { SupervisorUpdateComponent } from './supervisor-update/supervisor-update.component';
+import { SupervisordetailsComponent } from './supervisordetails/supervisordetails.component';
+import { SupervisorListComponent } from './supervisor-list/supervisor-list.component';
+
+
 
 
 
@@ -26,10 +29,11 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
     EmployeeListComponent,
     EmployeeAddComponent,
     EmployeeUpdateComponent,
+    EmployeedetailsComponent,
     SupervisorListComponent,
     SupervisorAddComponent,
-    SupervisorClientComponent,
-    EmployeedetailsComponent
+    SupervisorUpdateComponent,
+    SupervisordetailsComponent
   ],
   imports: [
     BrowserModule,

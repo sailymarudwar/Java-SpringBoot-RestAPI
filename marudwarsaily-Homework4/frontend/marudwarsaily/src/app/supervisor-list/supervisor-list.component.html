@@ -1,1 +1,27 @@
-<p>supervisor-list works!</p>
+<h2> Supervisor List</h2>
+<table class = "table table-striped"  matSort (matSortChange)="sortData($event)">
+    <thead>
+        <tr>
+			<th  mat-sort-header="sid">Supervisor Id</th>
+			<th  mat-sort-header="name"> Name</th>
+		
+			<th mat-sort-header="department"> Department </th>
+			
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let supervisor of sortedData" >
+
+            <td>  <span (click) = "supervisorDetails(supervisor.sid)" style="margin-left: 10px;    cursor: pointer;text-decoration: underline;color: blue;">{{ supervisor.sid }} </span></td>
+           	<td> {{ supervisor.sid }} </td>
+            <td> {{ supervisor.name }} </td>
+			<td >{{ supervisor.department }} </td>
+		
+            <td>
+                <button (click) = "updateSupervisor(supervisor.sid)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteSupervisor(supervisor.sid)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

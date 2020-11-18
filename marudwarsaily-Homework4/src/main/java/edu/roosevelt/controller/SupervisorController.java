@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.roosevelt.Employee;
+import edu.roosevelt.EmployeeRowMapper;
 import edu.roosevelt.Supervisor;
 import edu.roosevelt.SupervisorRowMapper;
 /**
@@ -24,13 +27,14 @@ import edu.roosevelt.SupervisorRowMapper;
 */
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class SupervisorController {
 
 	@Autowired
 	JdbcTemplate db;
 
 	//1.6 Get all supervisors (optional SID)
-	@GetMapping(value = { "/supervisorsBySid/{sid}", "/supervisorsBySid" })
+	@GetMapping(value = { "/supervisors" })
 	public ResponseEntity<Supervisor> getAllSupervisors(@PathVariable(name = "sid", required = false) final String sid) {
 		try {
 			String sql = "SELECT * FROM SUPERVISORS";
@@ -49,6 +53,27 @@ public class SupervisorController {
 			return new ResponseEntity("Error in getting Supervisor\n" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	//1.2 Get Supervisor with given EID
+		@GetMapping(value = { "/supervisorBysid/{sid}" })
+		public ResponseEntity<Supervisor> getSupervisor(@PathVariable("sid") final int sid) {
+
+			Supervisor s = null;
+			try {
+
+				// query for Supervisor with the given SID
+				s = db.queryForObject("SELECT * FROM SUPERVISORS WHERE SID=" + sid, new SupervisorRowMapper());
+				if (s == null) {
+					return new ResponseEntity("Supervisor with SID:" + sid + " could not be found", HttpStatus.NOT_FOUND);
+				} else {
+					return new ResponseEntity(s, HttpStatus.OK);
+				}
+
+			} catch (Exception e) {
+				return new ResponseEntity("Supervisor with SID:" + sid + " could not be found\n"+ e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+
+		}
 
 	//GRADUATE STUDENTS ONLY Create Supervisor (Post endpoint)
 	@PostMapping(value = "/createSupervisor", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -70,22 +95,22 @@ public class SupervisorController {
 	}
 
 	//GRADUATE STUDENTS ONLY Update Supervisor (Put endpoint)
-	@PutMapping(value = "/updateSupervisor", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Supervisor> updateSupervisor(@RequestBody final Supervisor s) {
+	@PutMapping(value = "/updateSupervisor/{sid}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Supervisor> updateSupervisor(@RequestBody final Supervisor s,@PathVariable("sid") final int sid) {
 		try {
-			String sql = "SELECT COUNT(*) FROM SUPERVISORS WHERE SID=" + s.getSID();
+			String sql = "SELECT COUNT(*) FROM SUPERVISORS WHERE SID=" + sid;
 			int num = db.queryForObject(sql, Integer.class);
 
 			if (num > 0) {
 
 				sql = "UPDATE SUPERVISORS SET SID=" + s.getSID() + ",NAME='" + s.getName() + "',DEPARTMENT='" + s.getDepartment() + " 'WHERE SID="
-						+ s.getSID();
+						+ sid;
 				db.update(sql);
 				Supervisor updatedSup = db.queryForObject("SELECT * FROM SUPERVISORS WHERE SID=" + s.getSID(), new SupervisorRowMapper());
 				return new ResponseEntity(updatedSup, HttpStatus.OK);
 
 			} else {
-				return new ResponseEntity("Suoervisor with SID " + s.getSID() + " does not exist and hence it cannot be updated",
+				return new ResponseEntity("Suoervisor with SID " + sid + " does not exist and hence it cannot be updated",
 						HttpStatus.NOT_FOUND);
 
 			}

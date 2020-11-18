@@ -42,6 +42,7 @@ public class Employee implements Serializable{
 	@Min(value=10000, message="SID Must be 5 digit")  
 	@Max(value=99999, message="SID Must be 5 digit")  
     private int SID;
+	
 
 	public int getEID() {
 		return EID;

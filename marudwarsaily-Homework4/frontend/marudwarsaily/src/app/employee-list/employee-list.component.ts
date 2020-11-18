@@ -66,6 +66,9 @@ export class EmployeeListComponent implements OnInit {
 
     this.router.navigate(['employee-update', id]);
   }
+  supervisorDetails(id: number) {
+    this.router.navigate(['supervisordetails', id]);
+  }
 
   deleteEmployee(id: number) {
     if(confirm("Are you sure to delete Employee:"+id)) {

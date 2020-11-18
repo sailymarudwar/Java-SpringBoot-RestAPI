@@ -19,7 +19,8 @@
 			<td >{{ employee.yos }} </td>
 			<td> {{ employee.position }} </td>
 			<td >{{ employee.salary }} </td>
-			<td> {{ employee.sid }} </td>
+            <td>  <span (click) = "supervisorDetails(employee.sid)" style="margin-left: 10px;    cursor: pointer;text-decoration: underline;color: blue;">{{ employee.sid }} </span></td>
+
             <td>
                 <button (click) = "updateEmployee(employee.eid)" class = "btn btn-info"> Update</button>
                 <button (click) = "deleteEmployee(employee.eid)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>

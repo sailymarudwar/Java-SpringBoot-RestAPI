@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Supervisor } from '../supervisor';
 import { SupervisorService } from '../supervisor.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -11,10 +12,15 @@ import { Router } from '@angular/router';
 })
 export class SupervisorAddComponent implements OnInit {
   supervisor: Supervisor = new Supervisor();
+  departments: string[];  
 
 
   constructor(private supervisorService: SupervisorService,
-    private router: Router) { }
+    private route: ActivatedRoute,
+    private router: Router) {
+      this.getDepartmentList();
+     }
+  
 
   ngOnInit(): void {
   }
@@ -34,6 +40,12 @@ export class SupervisorAddComponent implements OnInit {
   onSubmit() {
     console.log(this.supervisor);
     this.saveSupervisor();
+  }
+
+  private getDepartmentList() {
+    this.supervisorService.getDepartmentList().subscribe(data => {
+      this.departments = data;      
+    });
   }
 
 }

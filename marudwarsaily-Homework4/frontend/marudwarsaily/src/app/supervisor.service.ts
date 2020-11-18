@@ -16,6 +16,10 @@ export class SupervisorService {
     return this.httpClient.get<Supervisor[]>(`${this.baseURL}/supervisors`);
   }
 
+  getDepartmentList(): Observable<string[]>{
+    return this.httpClient.get<string[]>(`${this.baseURL}/departments`);
+  }
+
   getSupervisorById(sid: number): Observable<Supervisor>{
     return this.httpClient.get<Supervisor>(`${this.baseURL}/supervisorBysid/${sid}`);
   }

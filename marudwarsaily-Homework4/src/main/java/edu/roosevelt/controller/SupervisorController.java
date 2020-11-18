@@ -54,6 +54,24 @@ public class SupervisorController {
 		}
 	}
 	
+	@GetMapping(value = { "/departments" })
+	public ResponseEntity<String> getDepartments() {
+		try {
+			String sql = "SELECT distinct department FROM SUPERVISORS";
+			
+			List<String> s = db.queryForList(sql,String.class);
+			if (s.isEmpty()) {
+				return new ResponseEntity("Departents not found", HttpStatus.NOT_FOUND);
+			} else {
+				return new ResponseEntity(s, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity("Error in getting Supervisor\n" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	
 	//1.2 Get Supervisor with given EID
 		@GetMapping(value = { "/supervisorBysid/{sid}" })
 		public ResponseEntity<Supervisor> getSupervisor(@PathVariable("sid") final int sid) {

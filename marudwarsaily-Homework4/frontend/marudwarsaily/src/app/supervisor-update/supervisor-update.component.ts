@@ -10,11 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SupervisorUpdateComponent implements OnInit {
    sid: number;
+   departments: string[];
    supervisor: Supervisor = new Supervisor();
 
   constructor(private supervisorService: SupervisorService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) { 
+      this.getDepartmentList();
+    }
 
   ngOnInit(): void {
     this.sid = this.route.snapshot.params['id'];
@@ -31,6 +34,11 @@ export class SupervisorUpdateComponent implements OnInit {
   }
   goToSupervisorList(){
     this.router.navigate(['/supervisors']);
+  }
+  private getDepartmentList() {
+    this.supervisorService.getDepartmentList().subscribe(data => {
+      this.departments = data;      
+    });
   }
 
 }

@@ -19,8 +19,8 @@
 			<td >{{ supervisor.department }} </td>
 		
             <td>
-                <button (click) = "updateSupervisor(supervisor.sid)" class = "btn btn-info"> Update</button>
-                <button (click) = "deleteSupervisor(supervisor.sid)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "updateSupervisor(supervisor.sid)" class = "btn btn-info"> <span class="material-icons">edit</span></button>
+                <button (click) = "deleteSupervisor(supervisor.sid)" class = "btn btn-danger" style="margin-left: 10px"> <span class="material-icons">delete</span></button>
             </td>
         </tr>
     </tbody>

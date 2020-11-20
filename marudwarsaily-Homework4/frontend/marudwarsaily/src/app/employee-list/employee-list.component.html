@@ -22,8 +22,8 @@
             <td>  <span (click) = "supervisorDetails(employee.sid)" style="margin-left: 10px;    cursor: pointer;text-decoration: underline;color: blue;">{{ employee.sid }} </span></td>
 
             <td>
-                <button (click) = "updateEmployee(employee.eid)" class = "btn btn-info"> Update</button>
-                <button (click) = "deleteEmployee(employee.eid)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "updateEmployee(employee.eid)" class = "btn btn-info"> <span class="material-icons">edit</span></button>
+                <button (click) = "deleteEmployee(employee.eid)" class = "btn btn-danger" style="margin-left: 10px"> <span class="material-icons">delete</span></button>
             </td>
         </tr>
     </tbody>

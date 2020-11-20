@@ -9,14 +9,14 @@
 				<span  style="color:red" *ngIf="!sidAlreadyExists && (sid.invalid && !sid.errors.required && sid.errors.notint) && (sid.dirty || sid.touched)">({{sid.errors.notintmess}})</span> 
 			</span>
 			 <input type="number" required [ngClass]="{'invalidTB': (sidAlreadyExists || (sid.invalid && (sid.dirty || sid.touched))) }"  mustbeint  minlength="5"  maxlength="5" class ="form-control" id = "eid"
-                [(ngModel)] = "supervisor.sid" name ="sid" #sid="ngModel"><p>        
+                [(ngModel)] = "supervisor.sid" name ="sid" #sid="ngModel"><p>       </p> 
         </div>
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" class ="form-control" id = "name"
-                [(ngModel)] = "supervisor.name" name = "name">
+         <div class="form-group">
+            <label >Name</label>
+            <span  [ngClass]="{'invalidLabel': (name.invalid && (name.touched || name.dirty)) }"  *ngIf="name.invalid && (name.touched || name.dirty)" >(Name cannot be blank)</span>
+            <input  maxlength="30" [ngClass]="{'invalidTB': (name.invalid && (name.touched || name.dirty))}" required type="text" class ="form-control" id = "name"
+                [(ngModel)] = "supervisor.name" name = "name" #name="ngModel">
         </div>
-
        
         <div class="form-group">
             <label> Department</label>

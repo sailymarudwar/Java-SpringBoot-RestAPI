@@ -1,29 +1,31 @@
 <div class="col-md-6 offset-md-3">
-    <h3> Update Supervisor </h3>
-    <form (ngSubmit)="onSubmit()">
-
+    <h3> Create Supervisor </h3>
+    <form (ngSubmit) = "onSubmit()">
         <div class="form-group">
-            <label>SID</label>
-            <input type="text" class="form-control" id="sid" [(ngModel)]="supervisor.sid" name="sid">
+            <label> SID</label>
+			<span [ngClass]="{'invalidLabel': (sidAlreadyExists || (sid.invalid && (sid.dirty || sid.touched))) }">
+				<span style="color:red" *ngIf="sidAlreadyExists && sid.pristine">(SID already exists, please enter a new SID)</span>
+				<span style="color:red"  *ngIf="!sidAlreadyExists && (sid.invalid && sid.errors.required) && (sid.dirty || sid.touched)">(SID Cannot be blank)</span>
+				<span  style="color:red" *ngIf="!sidAlreadyExists && (sid.invalid && !sid.errors.required && sid.errors.notint) && (sid.dirty || sid.touched)">({{sid.errors.notintmess}})</span> 
+			</span>
+			 <input type="number" required [ngClass]="{'invalidTB': (sidAlreadyExists || (sid.invalid && (sid.dirty || sid.touched))) }"  mustbeint  minlength="5"  maxlength="5" class ="form-control" id = "eid"
+                [(ngModel)] = "supervisor.sid" name ="sid" #sid="ngModel"><p>       </p> 
         </div>
-        <!--  EID, SID, YOS, name, position, salary -->
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="supervisor.name" name="name">
+         <div class="form-group">
+            <label >Name</label>
+            <span  [ngClass]="{'invalidLabel': (name.invalid && (name.touched || name.dirty)) }"  *ngIf="name.invalid && (name.touched || name.dirty)" >(Name cannot be blank)</span>
+            <input  maxlength="30" [ngClass]="{'invalidTB': (name.invalid && (name.touched || name.dirty))}" required type="text" class ="form-control" id = "name"
+                [(ngModel)] = "supervisor.name" name = "name" #name="ngModel">
         </div>
-
-      
-
+       
         <div class="form-group">
             <label> Department</label>
-            
             <select [(ngModel)]="supervisor.department" name="department" class ="form-control">
                 <option *ngFor="let c of departments" [ngValue]="c">{{c}}</option>
             </select>
-        </div>
-
-        
-        <button class="btn btn-success" type="submit">Submit</button>
-
+        </div>      
+      
+        <button class = "btn btn-success" type ="submit">Submit</button>
+    
     </form>
-</div>
+    </div> 

@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SupervisorUpdateComponent implements OnInit {
    sid: number;
+   sidAlreadyExists = false; 
    departments: string[];
    supervisor: Supervisor = new Supervisor();
 
@@ -30,7 +31,14 @@ export class SupervisorUpdateComponent implements OnInit {
     this.supervisorService.updateSupervisor(this.sid, this.supervisor).subscribe( data =>{
       this.goToSupervisorList();
     }
-    , error => console.log(error));
+    , error => {
+      if (error.status == '409') {
+        console.error("Supervisor already exists");
+        this.sidAlreadyExists = true;
+      } else {
+         this.goToSupervisorList();
+      }
+    });
   }
   goToSupervisorList(){
     this.router.navigate(['/supervisors']);

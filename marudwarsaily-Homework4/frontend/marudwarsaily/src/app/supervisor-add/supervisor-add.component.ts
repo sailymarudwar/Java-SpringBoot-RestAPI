@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Supervisor } from '../supervisor';
 import { SupervisorService } from '../supervisor.service';
 import { Router } from '@angular/router';
-import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +15,7 @@ export class SupervisorAddComponent implements OnInit {
 
 
   constructor(private supervisorService: SupervisorService,
-    private route: ActivatedRoute,
+   
     private router: Router) {
       this.getDepartmentList();
      }

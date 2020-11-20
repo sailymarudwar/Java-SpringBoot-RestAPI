@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Supervisor } from '../supervisor';
 import { Employee } from '../employee';
-
+import { Title } from '@angular/platform-browser';
 import { EmployeeService } from '../employee.service';
 import { SupervisorService } from '../supervisor.service';
 
-import { Router } from '@angular/router';
+import { Router} from '@angular/router'
 
 
 @Component({
@@ -14,15 +14,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./employee-add.component.css']
 })
 export class EmployeeAddComponent implements OnInit {
+  eidAlreadyExists = false; 
   employee: Employee = new Employee();
   supervisors: Supervisor[];
 
-  constructor(private employeeService: EmployeeService,private supervisorService: SupervisorService,
+  constructor(private titleService: Title,private employeeService: EmployeeService,private supervisorService: SupervisorService,
     private router: Router) {
       this.getSupervisors();
      }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Add Employee");
   }
 
   saveEmployee() {
@@ -30,7 +32,14 @@ export class EmployeeAddComponent implements OnInit {
       console.log(data);
       this.goToEmployeeList();
     },
-      error => console.log(error));
+      error => {
+        if (error.status == '409') {
+          console.error("User already exists");
+          this.eidAlreadyExists = true;
+        } else {
+           this.goToEmployeeList();
+        }
+      });
   }
 
   goToEmployeeList() {

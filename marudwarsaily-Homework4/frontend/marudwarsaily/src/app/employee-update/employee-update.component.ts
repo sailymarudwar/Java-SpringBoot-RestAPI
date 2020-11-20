@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { SupervisorService } from '../supervisor.service';
 import { Employee } from '../employee';
+import { Title } from '@angular/platform-browser';
 import { Supervisor } from '../supervisor';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,7 +16,7 @@ export class EmployeeUpdateComponent implements OnInit {
   supervisors: Supervisor[];
    employee: Employee = new Employee();
 
-  constructor(private employeeService: EmployeeService,private supervisorService: SupervisorService,
+  constructor(private titleService: Title ,private employeeService: EmployeeService,private supervisorService: SupervisorService,
     private route: ActivatedRoute,
     private router: Router) {
             this.getSupervisors();

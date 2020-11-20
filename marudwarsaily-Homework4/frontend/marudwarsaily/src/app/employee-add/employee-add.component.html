@@ -1,44 +1,56 @@
 <div class="col-md-6 offset-md-3">
     <h3> Create Employee </h3>
-    <form (ngSubmit) = "onSubmit()">
-    
+    <form (ngSubmit) = "onSubmit()" novalidate #myform="ngForm">
+
         <div class="form-group">
-            <label>EID</label>
-            <input type="text" class ="form-control" id = "eid"
-                [(ngModel)] = "employee.eid" name = "eid">
+            <label >EID</label>
+            <span [ngClass]="{'invalidLabel': (eidAlreadyExists || (eid.invalid && (eid.dirty || eid.touched))) }">
+                <span style="color:red" *ngIf="eidAlreadyExists && eid.pristine">(EID already exists, please enter a new EID)</span> 
+                <span style="color:red"  *ngIf="!eidAlreadyExists && (eid.invalid && eid.errors.required) && (eid.dirty || eid.touched)">(EID Cannot be blank)</span>
+                <span  style="color:red" *ngIf="!eidAlreadyExists && (eid.invalid && !eid.errors.required && eid.errors.notint) && (eid.dirty || eid.touched)">({{eid.errors.notintmess}})</span> 
+            </span>
+            <input type="number" required [ngClass]="{'invalidTB': (eidAlreadyExists || (eid.invalid && (eid.dirty || eid.touched))) }"  mustbeint  minlength="5"  maxlength="5" class ="form-control" id = "eid"
+                [(ngModel)] = "employee.eid" name ="eid" #eid="ngModel"><p>
         </div>
+
         <div class="form-group">
-            <label>Name</label>
-            <input type="text" class ="form-control" id = "name"
-                [(ngModel)] = "employee.name" name = "name">
+            <label >Name</label>
+            <span  [ngClass]="{'invalidLabel': (name.invalid && (name.touched || name.dirty)) }"  *ngIf="name.invalid && (name.touched || name.dirty)" >(Name cannot be blank)</span>
+            <input  maxlength="30" [ngClass]="{'invalidTB': (name.invalid && (name.touched || name.dirty))}" required type="text" class ="form-control" id = "name"
+                [(ngModel)] = "employee.name" name = "name" #name="ngModel">
         </div>
 
         <div class="form-group">
             <label>YOS</label>
-            <input type="text" class ="form-control" id = "yos"
-                [(ngModel)] = "employee.yos" name = "yos">
+             <span  [ngClass]="{'invalidLabel': (yos.invalid && (yos.touched || yos.dirty)) }"  *ngIf="yos.invalid && (yos.touched || yos.dirty)">(YOS cannot be blank)</span>
+            <input required [ngClass]="{'invalidTB': (yos.invalid && (yos.touched || yos.dirty))}" type="number" min="0" class ="form-control" id = "yos"
+                [(ngModel)] = "employee.yos" name = "yos" #yos="ngModel">
         </div>
 
         <div class="form-group">
             <label> Position</label>
-            <input type="text" class ="form-control" id = "position"
-                [(ngModel)] = "employee.position" name = "position">
+             <span   [ngClass]="{'invalidLabel': (position.invalid && (position.touched || position.dirty)) }"  *ngIf="position.invalid && (position.touched || position.dirty)">(Position cannot be blank)</span>
+            <input maxlength="30" [ngClass]="{'invalidTB': (position.invalid && (position.touched || position.dirty))}" required type="text" class ="form-control" id = "position"
+                [(ngModel)] = "employee.position" name = "position" #position="ngModel">
         </div>
 
         <div class="form-group">
             <label> Salary</label>
-            <input type="text" class ="form-control" id = "salary"
-                [(ngModel)] = "employee.salary" name = "salary">
+             <span  [ngClass]="{'invalidLabel': (salary.invalid && (salary.touched || salary.dirty)) }"  *ngIf="salary.invalid && (salary.touched || salary.dirty)">(Salary cannot be blank)</span>
+            <input [ngClass]="{'invalidTB': (salary.invalid && (salary.touched || salary.dirty))}" min="0" required type="number" class ="form-control" id = "salary"
+                [(ngModel)] = "employee.salary" name = "salary" #salary="ngModel">
         </div>
 
          <div class="form-group">
             <label> SID</label>
             <select [(ngModel)]="employee.sid" name="sid" class ="form-control">
-                  <option *ngFor="let c of supervisors" [ngValue]="c.sid">{{c.sid}}</option>
+                  <option *ngFor="let c of supervisors" [ngValue]="c.sid">{{c.sid}}({{c.name}})</option>
             </select>
         </div>
       
-        <button class = "btn btn-success" type ="submit">Submit</button>
+        <button class = "btn btn-success" type ="submit">Submit</button> | 
+                <button class = "btn btn-primary" type ="reset">Start over?</button>
+
     
     </form>
     </div> 

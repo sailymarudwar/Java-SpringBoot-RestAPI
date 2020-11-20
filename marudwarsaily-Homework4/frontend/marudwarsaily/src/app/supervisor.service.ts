@@ -29,7 +29,7 @@ export class SupervisorService {
   }
 
   updateSupervisor(sid: number, supervisor: Supervisor): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/updateSupervisor/${sid}`, supervisor);
+    return this.httpClient.put(`${this.baseURL}/updateSupervisor`, supervisor);
   }
 
   deleteSupervisor(id: number): Observable<Object>{

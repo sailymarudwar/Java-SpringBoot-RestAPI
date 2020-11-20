@@ -8,7 +8,7 @@
 				<span style="color:red"  *ngIf="!sidAlreadyExists && (sid.invalid && sid.errors.required) && (sid.dirty || sid.touched)">(SID Cannot be blank)</span>
 				<span  style="color:red" *ngIf="!sidAlreadyExists && (sid.invalid && !sid.errors.required && sid.errors.notint) && (sid.dirty || sid.touched)">({{sid.errors.notintmess}})</span> 
 			</span>
-			 <input  type="number" required [ngClass]="{'invalidTB': (sidAlreadyExists || (sid.invalid && (sid.dirty || sid.touched))) }"  mustbeint  minlength="5"  maxlength="5" class ="form-control" id = "eid"
+			 <input disabled  type="number" required [ngClass]="{'invalidTB': (sidAlreadyExists || (sid.invalid && (sid.dirty || sid.touched))) }"  mustbeint  minlength="5"  maxlength="5" class ="form-control" id = "eid"
                 [(ngModel)] = "supervisor.sid" name ="sid" #sid="ngModel"><p>       </p> 
         </div>
          <div class="form-group">

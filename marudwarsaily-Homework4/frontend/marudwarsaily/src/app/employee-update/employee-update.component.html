@@ -9,14 +9,14 @@
                 <span style="color:red"  *ngIf="!eidAlreadyExists && (eid.invalid && eid.errors.required) && (eid.dirty || eid.touched)">(EID Cannot be blank)</span>
                 <span  style="color:red" *ngIf="!eidAlreadyExists && (eid.invalid && !eid.errors.required && eid.errors.notint) && (eid.dirty || eid.touched)">({{eid.errors.notintmess}})</span> 
             </span>
-            <input type="number" required [ngClass]="{'invalidTB': (eidAlreadyExists || (eid.invalid && (eid.dirty || eid.touched))) }"    minlength="5"  maxlength="5" class ="form-control" id = "eid"
+            <input disabled type="number" required [ngClass]="{'invalidTB': (eidAlreadyExists || (eid.invalid && (eid.dirty || eid.touched))) }"    minlength="5"  maxlength="5" class ="form-control" id = "eid"
                 [(ngModel)] = "employee.eid" name ="eid" #eid="ngModel"><p>
         </p></div>
 
         <div class="form-group">
             <label >Name</label>
             <span  [ngClass]="{'invalidLabel': (name.invalid && (name.touched || name.dirty)) }"  *ngIf="name.invalid && (name.touched || name.dirty)" >(Name cannot be blank)</span>
-            <input  maxlength="30" [ngClass]="{'invalidTB': (name.invalid && (name.touched || name.dirty))}" required type="text" class ="form-control" id = "name"
+            <input   maxlength="30" [ngClass]="{'invalidTB': (name.invalid && (name.touched || name.dirty))}" required type="text" class ="form-control" id = "name"
                 [(ngModel)] = "employee.name" name = "name" #name="ngModel">
         </div>
 

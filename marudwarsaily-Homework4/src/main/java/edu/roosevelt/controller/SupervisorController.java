@@ -100,7 +100,7 @@ public class SupervisorController {
 			String sql = "SELECT COUNT(*) FROM SUPERVISORS WHERE SID=" + s.getSID();
 			int num = db.queryForObject(sql, Integer.class);
 
-			if (num == 0) {
+			if (num > 0) {
 				return new ResponseEntity("Supervisor with SID:" + s.getSID() + " Already Exists", HttpStatus.CONFLICT);
 			} else {
 				sql = "INSERT INTO SUPERVISORS VALUES (" + s.getSID() + ",'" + s.getName() + "','" + s.getDepartment() + "')";
@@ -119,7 +119,7 @@ public class SupervisorController {
 			String sql = "SELECT COUNT(*) FROM SUPERVISORS WHERE SID=" + s.getSID();
 			int num = db.queryForObject(sql, Integer.class);
 
-			if (num > 0) {
+			if (num == 0) {
 
 				sql = "UPDATE SUPERVISORS SET SID=" + s.getSID() + ",NAME='" + s.getName() + "',DEPARTMENT='" + s.getDepartment() + " 'WHERE SID="
 						+ sid;

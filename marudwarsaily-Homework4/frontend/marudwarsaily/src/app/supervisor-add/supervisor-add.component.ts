@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Supervisor } from '../supervisor';
 import { SupervisorService } from '../supervisor.service';
 import { Router } from '@angular/router';
-
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-supervisor-add',
@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 export class SupervisorAddComponent implements OnInit {
   supervisor: Supervisor = new Supervisor();
   departments: string[];  
+  sidAlreadyExists = false; 
 
 
-  constructor(private supervisorService: SupervisorService,
+  constructor(private titleService: Title,private supervisorService: SupervisorService,
    
     private router: Router) {
       this.getDepartmentList();
@@ -29,7 +30,14 @@ export class SupervisorAddComponent implements OnInit {
       console.log(data);
       this.goToSupervisorList();
     },
-      error => console.log(error));
+    error => {
+      if (error.status == '409') {
+        console.error("Supervisor already exists");
+        this.sidAlreadyExists = true;
+      } else {
+         this.goToSupervisorList();
+      }
+    });
   }
 
   goToSupervisorList() {

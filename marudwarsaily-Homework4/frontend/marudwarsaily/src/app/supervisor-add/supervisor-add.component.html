@@ -4,7 +4,7 @@
         <div class="form-group">
             <label> SID</label>
 			<span [ngClass]="{'invalidLabel': (sidAlreadyExists || (sid.invalid && (sid.dirty || sid.touched))) }">
-				<span style="color:red" *ngIf="sidAlreadyExists">(SID already exists, please enter a new SID)</span>
+				<span style="color:red" *ngIf="sidAlreadyExists && sid.pristine">(SID already exists, please enter a new SID)</span>
 				<span style="color:red"  *ngIf="!sidAlreadyExists && (sid.invalid && sid.errors.required) && (sid.dirty || sid.touched)">(SID Cannot be blank)</span>
 				<span  style="color:red" *ngIf="!sidAlreadyExists && (sid.invalid && !sid.errors.required && sid.errors.notint) && (sid.dirty || sid.touched)">({{sid.errors.notintmess}})</span> 
 			</span>

@@ -18,7 +18,7 @@
             <td> {{ employee.name }} </td>
 			<td >{{ employee.yos }} </td>
 			<td> {{ employee.position }} </td>
-			<td >{{ employee.salary }} </td>
+			<td >{{ employee.salary | currency:'USD':'symbol' }} </td>
             <td>  <span (click) = "supervisorDetails(employee.sid)" style="margin-left: 10px;    cursor: pointer;text-decoration: underline;color: blue;">{{ employee.sid }} </span></td>
 
             <td>

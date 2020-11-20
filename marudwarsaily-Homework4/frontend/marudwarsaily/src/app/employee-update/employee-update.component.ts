@@ -12,9 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./employee-update.component.css']
 })
 export class EmployeeUpdateComponent implements OnInit {
-   eid: number;
+  eid: number;
+  eidAlreadyExists = false; 
   supervisors: Supervisor[];
-   employee: Employee = new Employee();
+  employee: Employee = new Employee();
 
   constructor(private titleService: Title ,private employeeService: EmployeeService,private supervisorService: SupervisorService,
     private route: ActivatedRoute,
@@ -24,7 +25,7 @@ export class EmployeeUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.eid = this.route.snapshot.params['id'];
-
+    this.titleService.setTitle("Update Employee");
     this.employeeService.getEmployeeById(this.eid).subscribe(data => {
       this.employee = data;
     }, error => console.log(error));
@@ -32,8 +33,14 @@ export class EmployeeUpdateComponent implements OnInit {
   onSubmit(){
     this.employeeService.updateEmployee(this.eid, this.employee).subscribe( data =>{
       this.goToEmployeeList();
-    }
-    , error => console.log(error));
+    },  error => {
+        if (error.status == '409') {
+          console.error("User already exists");
+          this.eidAlreadyExists = true;
+        } else {
+           this.goToEmployeeList();
+        }
+      });
   }
   private getSupervisors() {
     this.supervisorService.getSupervisorsList().subscribe(data => {

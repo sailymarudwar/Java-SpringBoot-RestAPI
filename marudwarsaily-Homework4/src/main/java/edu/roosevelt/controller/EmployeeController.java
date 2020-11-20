@@ -213,10 +213,10 @@ public class EmployeeController implements WebMvcConfigurer {
 
 		try {
 
-			String sql = "SELECT COUNT(*) FROM EMPLOYEES WHERE EID=" + eid;
+			String sql = "SELECT COUNT(*) FROM EMPLOYEES WHERE EID=" + s.getEID();
 			int num = db.queryForObject(sql, Integer.class);
 
-			if (num > 0) {
+			if (num == 0) {
 				sql = "UPDATE EMPLOYEES SET EID=" + s.getEID() + ",NAME='" + s.getName() + "',POSITION='" + s.getPosition() + "',YOS=" + s.getYOS()
 						+ ",SALARY=" + s.getSalary() + " WHERE EID=" + eid;
 
@@ -225,7 +225,7 @@ public class EmployeeController implements WebMvcConfigurer {
 				return new ResponseEntity(updatedEmp, HttpStatus.OK);
 
 			} else {
-				return new ResponseEntity("Employee with EID " + s.getEID() + " does not exist and hence it cannot be updated", HttpStatus.NOT_FOUND);
+				return new ResponseEntity("Employee with EID " + s.getEID() + " does not exist and hence it cannot be updated", HttpStatus.CONFLICT);
 			}
 
 		} catch (Exception e) {
